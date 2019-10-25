@@ -307,12 +307,24 @@ class _EasyRefreshState extends State<EasyRefresh> {
     });
   }
 
+  double getOffest(){
+    return _scrollerController.offset;
+  }
+
   void backTop(){
     _scrollerController.animateTo(
             0.0,
             duration: Duration(milliseconds: 300),
             curve: Curves.linear);
       
+  }
+
+  void addListerTo(  Function(double of) lis ){
+    this._scrollerController.addListener((){
+      lis(
+        this._scrollerController.offset
+      );
+    });
   }
 
   // 触发加载
@@ -542,6 +554,19 @@ class EasyRefreshController {
     if (this._easyRefreshState != null) {
       this._easyRefreshState.backTop();
     }
+  }
+
+  void addLisner(Function(double of) lis){
+    if (this._easyRefreshState != null) {
+      this._easyRefreshState.addListerTo(lis);
+    }
+  }
+
+  double get getOffset{
+    if (this._easyRefreshState != null) {
+      return this._easyRefreshState.getOffest();
+    }
+    return 0.0;
   }
 
   /// 完成刷新
