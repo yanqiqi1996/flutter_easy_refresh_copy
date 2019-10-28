@@ -623,3 +623,4 @@ class EasyRefreshController {
     this.resetRefreshStateCallBack = null;
   }
 }
+
