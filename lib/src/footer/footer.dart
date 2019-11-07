@@ -366,7 +366,7 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
   // 加载结束图标
   IconData get _finishedIcon {
     if (!widget.success) return Icons.error_outline;
-    if (widget.noMore) return Icons.hourglass_empty;
+    if (widget.noMore) return null;
     return Icons.done;
   }
 
